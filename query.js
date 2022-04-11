@@ -10,7 +10,7 @@ function stringify(data) {
 const findAllWithTasks = async () => {
   // Find all users with their associated tasks
   // Raw SQL: SELECT * FROM users JOIN tasks ON tasks."userId" = users.id;
-  const response = await User.findAll({ include: Task })
+  const response = await User.findAll({ include: [Task] })
   stringify(response)
 }
 
@@ -19,7 +19,7 @@ const findAllJohnsWithTasks = async () => {
   // Raw SQL: SELECT * FROM users JOIN tasks ON tasks."userId" = users.id WHERE users."firstName" = 'John';
   const response = await User.findAll({
     where: { firstName: 'John' },
-    include: Task
+    include: [Task]
   })
   stringify(response)
 }
